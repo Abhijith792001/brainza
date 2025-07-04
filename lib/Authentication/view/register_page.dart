@@ -9,9 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-class LoginPage extends GetView<AuthController> {
-  const LoginPage({super.key});
-
+class RegisterPage extends GetView<AuthController> {
+  const RegisterPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class LoginPage extends GetView<AuthController> {
                 children: [
                   Icon(LucideIcons.chevronLeft, color: AppTheme.whiteColor),
                   Text(
-                    'Forgot your password ?',
+                    'Need a Help ?',
                     style: TextStyle(
                       color: AppTheme.whiteColor,
                       fontSize: 12.sp,
@@ -54,14 +53,14 @@ class LoginPage extends GetView<AuthController> {
                   child: Column(
                     children: [
                       Text(
-                        'Welcome Back!',
+                        'Getting started',
                         style: TextStyle(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       Text(
-                        'Sign in to your account',
+                        'Create account to continue!',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
@@ -69,42 +68,56 @@ class LoginPage extends GetView<AuthController> {
                         ),
                       ),
                       SizedBox(height: 20.h),
-                      // Email
+                      //  Name
                       AppInputField(
                         controller: controller,
-                        hintText: "Email",
+                        hintText: "Enter Your Name",
                         prefixIcon: LucideIcons.user,
                         inputController: controller.emailController,
-                         obscureText: false,
+                        obscureText: false,
                       ),
-
                       SizedBox(height: 20.h),
-                      // Password
-                      Obx(()=>
                       AppInputField(
+                        controller: controller,
+                        hintText: "Enter Your Email",
+                        prefixIcon: LucideIcons.mail,
+                        inputController: controller.emailController,
+                        obscureText: false,
+                      ),
+                      SizedBox(height: 20.h),
+                      Obx(
+                        () => AppInputField(
                           controller: controller,
-                          hintText: "Password",
+                          hintText: "Enter Your Password",
                           prefixIcon: LucideIcons.lock,
                           inputController: controller.passwordController,
+                          obscureText: controller.isShow.value,
                           isPassword: true,
-                          obscureText: controller.isShow.value?true:false,
                         ),
                       ),
-
                       SizedBox(height: 20.h),
-                      AppPrimaryButton(btnName: 'Login'),
+                      Obx(
+                        () => AppInputField(
+                          controller: controller,
+                          hintText: "Confirm Password",
+                          prefixIcon: LucideIcons.lock,
+                          inputController: controller.confirmPasswordController,
+                          obscureText: controller.isShow.value,
+                          isPassword: true,
+                        ),
+                      ),
                       SizedBox(height: 20.h),
+                      AppPrimaryButton(btnName: 'Register'),
                       Text.rich(
                         TextSpan(
-                          text: "Don't have account? ",
+                          text: "Already have an account? ",
                           children: <InlineSpan>[
                             TextSpan(
                               recognizer:
                                   TapGestureRecognizer()
                                     ..onTap =
-                                        () =>
-                                            Get.toNamed(AppRoutes.registerPage),
-                              text: 'Sign Up',
+                                        () => Get.toNamed(AppRoutes.loginPage),
+                              text: 'Sign In',
                               style: TextStyle(color: AppTheme.primaryColor),
                             ),
                           ],
@@ -123,7 +136,6 @@ class LoginPage extends GetView<AuthController> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset('assets/icons/g.png', width: 24),
                             SizedBox(width: 10.w),
@@ -148,4 +160,3 @@ class LoginPage extends GetView<AuthController> {
     );
   }
 }
-

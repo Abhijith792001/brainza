@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           getPages: AppPage.pages,
-          initialRoute: AppRoutes.splashPage,
+          initialRoute: AppRoutes.loginPage,
           theme: ThemeData(
             fontFamily: 'Poppins',
             colorScheme: ColorScheme.fromSeed(seedColor: AppTheme.primaryColor)

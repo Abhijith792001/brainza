@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-class BottomNavigation extends StatelessWidget {
-  BottomNavigation({super.key});
+class NavigationWrapper extends StatelessWidget {
+  NavigationWrapper({super.key});
 
   final controller = Get.put(NavigationController());
 

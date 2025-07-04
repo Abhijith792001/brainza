@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:brainza/JobPage/controller/job_controller.dart';
 import 'package:brainza/JobPage/model/job_model.dart';
+import 'package:brainza/routes/app_routes.dart';
 import 'package:brainza/theme/app_theme.dart';
 import 'package:brainza/widgets/filter_badge_card.dart';
 import 'package:brainza/widgets/job_card.dart';
@@ -108,11 +109,16 @@ class JobPage extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
-                  return JobCard(
-                    jobTitle: 'Agniveer',
-                    category: 'Defense',
-                    date: '01-07-2025',
-                    salary: '₹50k to ₹70k',
+                  return InkWell(
+                    onTap: ()=>{
+                      Get.toNamed(AppRoutes.jobDetailsPage)
+                    },
+                    child: JobCard(
+                      jobTitle: 'Agniveer',
+                      category: 'Defense',
+                      date: '01-07-2025',
+                      salary: '₹50k to ₹70k',
+                    ),
                   );
                 },
               ),
