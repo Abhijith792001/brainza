@@ -38,6 +38,7 @@ class AppInputField extends StatelessWidget {
             SizedBox(width: 5.w),
             Expanded(
               child: TextField(
+                controller:inputController,
                 obscureText: obscureText!,
                 decoration: InputDecoration(
                   border: InputBorder.none,

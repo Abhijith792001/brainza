@@ -73,7 +73,7 @@ class RegisterPage extends GetView<AuthController> {
                         controller: controller,
                         hintText: "Enter Your Name",
                         prefixIcon: LucideIcons.user,
-                        inputController: controller.emailController,
+                        inputController: controller.nameController,
                         obscureText: false,
                       ),
                       SizedBox(height: 20.h),
@@ -107,7 +107,11 @@ class RegisterPage extends GetView<AuthController> {
                         ),
                       ),
                       SizedBox(height: 20.h),
-                      AppPrimaryButton(btnName: 'Register'),
+                      InkWell(
+                        onTap: ()=>{
+                          controller.createUser()
+                        },
+                        child: AppPrimaryButton(btnName: 'Register')),
                       Text.rich(
                         TextSpan(
                           text: "Already have an account? ",

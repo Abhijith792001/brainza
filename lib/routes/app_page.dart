@@ -1,5 +1,7 @@
 import 'package:brainza/Authentication/binding/auth_binding.dart';
 import 'package:brainza/Authentication/view/register_page.dart';
+import 'package:brainza/JobPage/model/job_model.dart';
+import 'package:brainza/ProfilePage/Binding/profile_binding.dart';
 import 'package:get/get.dart';
 import 'package:brainza/routes/app_routes.dart';
 
@@ -64,7 +66,10 @@ class AppPage {
     ),
     GetPage(
       name: AppRoutes.jobDetailsPage,
-      page: () =>JobDetailsPage(),
+      page: (){
+        final jobs = Get.arguments as JobModel;
+        return JobDetailsPage(jobs : jobs);
+      },
       binding: JobBinding(),
     ),
     GetPage(
@@ -76,6 +81,7 @@ class AppPage {
     GetPage(
       name: AppRoutes.profilePage,
       page: () => ProfilePage(),
+      binding: ProfileBinding()
     ),
 
     // Navigation Wrapper

@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class JobBinding  extends Bindings{
   @override
   void dependencies() {
-    Get.put(JobController());
+    Get.lazyPut(()=>JobController());
   }
 }

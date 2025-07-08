@@ -40,6 +40,8 @@ class JobModel {
       'salary': salary,
     };
   }
+
+  static void fromMap(Map<String, dynamic> data) {}
 }
 
 

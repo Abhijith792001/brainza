@@ -1,11 +1,16 @@
+import 'package:brainza/Authentication/controller/auth_controller.dart';
 import 'package:brainza/routes/app_page.dart';
 import 'package:brainza/routes/app_routes.dart';
 import 'package:brainza/theme/app_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-main(){
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  Get.put(AuthController());
   runApp(MyApp());
 }
 
@@ -19,17 +24,17 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       // Use builder only if you need to use library outside ScreenUtilInit context
-      builder: (_ , child) {
+      builder: (_, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           getPages: AppPage.pages,
-          initialRoute: AppRoutes.loginPage,
+          initialRoute: AppRoutes.splashPage,
           theme: ThemeData(
             fontFamily: 'Poppins',
-            colorScheme: ColorScheme.fromSeed(seedColor: AppTheme.primaryColor)
+            colorScheme: ColorScheme.fromSeed(seedColor: AppTheme.primaryColor),
           ),
         );
-      }
+      },
     );
   }
 }

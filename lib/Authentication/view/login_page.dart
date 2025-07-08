@@ -11,7 +11,6 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class LoginPage extends GetView<AuthController> {
   const LoginPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,42 +60,57 @@ class LoginPage extends GetView<AuthController> {
                         ),
                       ),
                       Text(
-                        'Sign in to your account',
+                        'Sign in to your account!',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                           color: AppTheme.grayColor,
                         ),
                       ),
+
                       SizedBox(height: 20.h),
-                      // Email
                       AppInputField(
                         controller: controller,
-                        hintText: "Email",
-                        prefixIcon: LucideIcons.user,
+                        hintText: "Enter Your Email",
+                        prefixIcon: LucideIcons.mail,
                         inputController: controller.emailController,
-                         obscureText: false,
+                        obscureText: false,
                       ),
-
                       SizedBox(height: 20.h),
-                      // Password
-                      Obx(()=>
-                      AppInputField(
+                      Obx(
+                        () => AppInputField(
                           controller: controller,
-                          hintText: "Password",
+                          hintText: "Enter Your Password",
                           prefixIcon: LucideIcons.lock,
                           inputController: controller.passwordController,
+                          obscureText: controller.isShow.value,
                           isPassword: true,
-                          obscureText: controller.isShow.value?true:false,
                         ),
                       ),
+                      SizedBox(height: 20.h),
 
-                      SizedBox(height: 20.h),
-                      AppPrimaryButton(btnName: 'Login'),
-                      SizedBox(height: 20.h),
+                      InkWell(
+                        onTap: () {
+                          if (!controller.isLoading.value) {
+                            controller.loginUser();
+                          }
+                        },
+                        child: AppPrimaryButton(btnName: 'Login'),
+                      ),
+                      // ElevatedButton(
+                      //   onPressed:
+                      //       controller.isLoading.value
+                      //           ? null
+                      //           : controller.loginUser,
+                      //   child:
+                      //       controller.isLoading.value
+                      //           ? CircularProgressIndicator(color: Colors.white)
+                      //           : Text('Login'),
+                      // ),
+
                       Text.rich(
                         TextSpan(
-                          text: "Don't have account? ",
+                          text: "Don't have account?  ",
                           children: <InlineSpan>[
                             TextSpan(
                               recognizer:
@@ -123,7 +137,6 @@ class LoginPage extends GetView<AuthController> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset('assets/icons/g.png', width: 24),
                             SizedBox(width: 10.w),
@@ -148,4 +161,3 @@ class LoginPage extends GetView<AuthController> {
     );
   }
 }
-

@@ -1,4 +1,6 @@
+import 'package:brainza/Authentication/controller/auth_controller.dart';
 import 'package:brainza/HomePage/controller/home_controller.dart';
+import 'package:brainza/JobPage/controller/job_controller.dart';
 import 'package:brainza/theme/app_theme.dart';
 import 'package:brainza/widgets/badge_card.dart';
 import 'package:brainza/widgets/continues_course_card.dart';
@@ -12,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class HomePage extends StatelessWidget {
-   HomePage({super.key});
+  HomePage({super.key});
   final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
@@ -54,14 +56,16 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'Abhijith👋',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          fontFamily: 'ArefRuqaaInk',
-                          color: AppTheme.whiteColor,
+                    Obx(
+                      () => Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          '${controller.userName.value}👋',
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontFamily: 'ArefRuqaaInk',
+                            color: AppTheme.whiteColor,
+                          ),
                         ),
                       ),
                     ),
@@ -135,6 +139,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     Obx(() {
+                      // final jobController = Get.find<JobController>();
                       return CarouselSlider(
                         items:
                             controller.jobList
@@ -196,7 +201,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }

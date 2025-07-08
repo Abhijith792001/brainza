@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:brainza/JobPage/controller/job_controller.dart';
 import 'package:brainza/JobPage/model/job_model.dart';
@@ -104,23 +103,27 @@ class JobPage extends StatelessWidget {
                 },
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: ()=>{
-                      Get.toNamed(AppRoutes.jobDetailsPage)
-                    },
-                    child: JobCard(
-                      jobTitle: 'Agniveer',
-                      category: 'Defense',
-                      date: '01-07-2025',
-                      salary: '₹50k to ₹70k',
-                    ),
-                  );
-                },
+            Obx(()=>
+               Expanded(
+                child: ListView.builder(
+                
+                  shrinkWrap: true,
+                  itemCount: controller.jobList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    JobModel jobs = controller.jobList[index];
+                    return InkWell(
+                      onTap: ()=>{
+                       Get.toNamed(AppRoutes.jobDetailsPage, arguments: jobs)
+                      },
+                      child: JobCard(
+                        jobTitle: jobs.title,
+                        category: jobs.type,
+                        date: jobs.lastDate,
+                        salary: jobs.salary,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],

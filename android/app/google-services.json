@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799620961595",
+    "project_id": "brainza-86fba",
+    "storage_bucket": "brainza-86fba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799620961595:android:2fc52359af19874585931e",
+        "android_client_info": {
+          "package_name": "com.example.brainza_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4tmsyaer5olxHTOVsMMQKN5Dprfb8-1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
