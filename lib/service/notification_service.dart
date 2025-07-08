@@ -2,8 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
-
 class NotificationService {
   static final FirebaseMessaging _messaging = FirebaseMessaging.instance;
   static final FlutterLocalNotificationsPlugin _localNotifications =
@@ -12,24 +10,24 @@ class NotificationService {
   static Future<void> initialize() async {
     // Android-specific initialization
     const AndroidInitializationSettings androidSettings =
-        AndroidInitializationSettings('@mipmap/splash');
+        AndroidInitializationSettings('ic_stat_notification'); // ✅ use proper icon
 
     const InitializationSettings initSettings =
         InitializationSettings(android: androidSettings);
 
     await _localNotifications.initialize(initSettings);
 
-    // Request notification permissions (optional but recommended)
+    // Request notification permissions
     await _messaging.requestPermission();
 
     // Get and print FCM token
     String? token = await _messaging.getToken();
     print("FCM Token: $token");
 
-    // Setup background handler
+    // Background message handler
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-    // Foreground message listener
+    // Foreground message handler
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -46,6 +44,7 @@ class NotificationService {
               channelDescription: 'For default notifications',
               importance: Importance.high,
               priority: Priority.high,
+              icon: 'ic_stat_notification', // ✅ use custom white icon here
             ),
           ),
         );
@@ -55,6 +54,6 @@ class NotificationService {
 
   static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     await Firebase.initializeApp();
-    // Background message handling logic here
+    // Handle background notification logic here if needed
   }
 }
